@@ -18,7 +18,7 @@ class Api::V1::ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      render json: @product #status: :created, location: @product
+      render json: @product, status: :created # location: @product
     else
       render json: @product.errors, status: :unprocessable_entity
     end
@@ -48,7 +48,7 @@ class Api::V1::ProductsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def product_params
-      params.permit(:user_id, :name, :price, :description)
+      params.require(:product).permit(:user_id, :name, :price, :description)
     end
 
 end
