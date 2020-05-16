@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2020_05_01_141903) do
 
-  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "products", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "name"
     t.integer "price"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_05_01_141903) do
     t.index ["user_id"], name: "index_products_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "email"
     t.string "password"
