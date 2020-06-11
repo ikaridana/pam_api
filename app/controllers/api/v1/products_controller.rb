@@ -1,4 +1,6 @@
 class Api::V1::ProductsController < ApplicationController
+  # apply setting in set_product method to show, update
+  # and destroy function
   before_action :set_product, only: [:show, :update, :destroy]
 
   # GET /products
@@ -41,7 +43,8 @@ class Api::V1::ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to share common setup or constraints between
+    # actions.
     def set_product
       @product = Product.find(params[:id])
     end
@@ -50,5 +53,4 @@ class Api::V1::ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:user_id, :name, :price, :description)
     end
-
 end
